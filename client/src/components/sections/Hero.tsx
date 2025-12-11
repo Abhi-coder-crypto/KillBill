@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import heroBg from "@assets/generated_images/minimal_pastel_kids_learning.png";
+import kidWithSlate from "@assets/generated_images/kid_holding_blank_slate.png";
 
 export default function Hero() {
   return (
@@ -58,19 +59,36 @@ export default function Hero() {
                className="w-full h-full object-cover rounded-[3rem] shadow-2xl border-8 border-white transform hover:rotate-2 transition-transform duration-500"
              />
              
-             {/* Floating badge */}
-             <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-xl border-4 border-accent animate-float-delayed">
-               <div className="text-center">
-                 <span className="block text-3xl font-bold font-heading text-accent">15+</span>
-                 <span className="text-sm font-bold text-muted-foreground">Years Experience</span>
-               </div>
-             </div>
           </div>
         </motion.div>
       </div>
 
+      {/* Kid with Slate popping from bottom */}
+      <motion.div
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5, type: "spring", bounce: 0.4 }}
+        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center"
+      >
+        {/* Slate Badge */}
+        <div className="bg-gradient-to-br from-[#2D2D2D] to-[#1a1a1a] px-8 py-4 rounded-xl shadow-2xl border-4 border-[#8B4513] relative mb-[-20px] z-10">
+          <div className="absolute inset-2 border-2 border-[#5D4037] rounded-lg opacity-30"></div>
+          <div className="text-center relative z-10">
+            <span className="block text-4xl font-bold font-heading text-white drop-shadow-lg">15+</span>
+            <span className="text-sm font-bold text-gray-300">Years Experience</span>
+          </div>
+        </div>
+        
+        {/* Kid Image */}
+        <img 
+          src={kidWithSlate} 
+          alt="Happy kid" 
+          className="w-40 h-40 object-contain drop-shadow-xl"
+        />
+      </motion.div>
+
       {/* Wave Separator */}
-      <div className="absolute bottom-0 left-0 right-0 translate-y-1">
+      <div className="absolute bottom-0 left-0 right-0 translate-y-1 z-10">
         <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 60L48 68.3C96 76.7 192 93.3 288 90C384 86.7 480 63.3 576 56.7C672 50 768 60 864 71.7C960 83.3 1056 96.7 1152 96.7C1248 96.7 1344 83.3 1392 76.7L1440 70V120.5H1392C1344 120.5 1248 120.5 1152 120.5C1056 120.5 960 120.5 864 120.5C768 120.5 672 120.5 576 120.5C480 120.5 384 120.5 288 120.5C192 120.5 96 120.5 48 120.5H0V60Z" fill="white"/>
         </svg>
