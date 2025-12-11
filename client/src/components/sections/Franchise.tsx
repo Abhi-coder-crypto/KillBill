@@ -23,13 +23,14 @@ export default function Franchise() {
 
           <Button 
             size="lg" 
-            className="bg-primary hover:bg-primary/90 text-white font-heading text-xl px-10 py-8 rounded-full shadow-pastel-pink animate-pulse hover:animate-none hover:scale-105 transition-all relative z-10"
+            className="bg-gradient-to-r from-[#FF6B6B] via-[#FFB347] to-[#4ECDC4] hover:from-[#FF5252] hover:via-[#FFA726] hover:to-[#26A69A] text-white font-heading text-xl px-12 py-8 rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all relative z-10 border-2 border-white"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            data-testid="button-franchise-contact"
           >
-            Interested? Contact Us
+            Get Franchise Info Now
           </Button>
 
-          <p className="mt-6 text-sm text-muted-foreground font-medium relative z-10">
+          <p className="mt-8 text-sm text-muted-foreground font-medium relative z-10">
             Join 50+ successful partners across Maharashtra
           </p>
         </motion.div>
