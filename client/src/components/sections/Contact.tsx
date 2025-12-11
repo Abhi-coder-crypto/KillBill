@@ -22,12 +22,12 @@ export default function Contact() {
 
             <div className="space-y-6">
               {[
-                { icon: <MapPin />, text: "123 Happy Lane, Near Sunshine Park, Badlapur East, 421503", color: "bg-primary" },
-                { icon: <Phone />, text: "+91 98765 43210", color: "bg-secondary" },
-                { icon: <Mail />, text: "hello@kilbilpreschool.com", color: "bg-accent" },
+                { icon: <MapPin />, text: "123 Happy Lane, Near Sunshine Park, Badlapur East, 421503", bgColor: "bg-[#FFCDD2]", iconColor: "text-[#E57373]" },
+                { icon: <Phone />, text: "+91 98765 43210", bgColor: "bg-[#C8E6C9]", iconColor: "text-[#66BB6A]" },
+                { icon: <Mail />, text: "hello@kilbilpreschool.com", bgColor: "bg-[#BBDEFB]", iconColor: "text-[#42A5F5]" },
               ].map((item, idx) => (
                 <div key={idx} className="flex items-start gap-4">
-                  <div className={`w-12 h-12 rounded-full ${item.color} flex items-center justify-center text-white shrink-0 shadow-lg`}>
+                  <div className={`w-12 h-12 rounded-full ${item.bgColor} flex items-center justify-center ${item.iconColor} shrink-0 shadow-md`}>
                     {item.icon}
                   </div>
                   <p className="text-lg font-medium pt-2 text-foreground">{item.text}</p>
