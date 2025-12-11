@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
-import { Star, Heart, Smile } from "lucide-react";
+import { Star } from "lucide-react";
+import safeEnvImg from "@assets/generated_images/safe_environment_illustration.png";
+import playWayImg from "@assets/generated_images/play_way_learning_illustration.png";
+import teacherImg from "@assets/generated_images/caring_teacher_illustration.png";
 
 export default function About() {
   return (
@@ -37,25 +40,22 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             {
-              icon: <Heart size={40} className="text-white" />,
+              image: safeEnvImg,
               title: "Safe Environment",
               desc: "CCTV monitored premises with child-safe furniture and materials.",
               color: "bg-primary",
-              shadow: "shadow-pastel-pink",
             },
             {
-              icon: <Smile size={40} className="text-white" />,
+              image: playWayImg,
               title: "Play-Way Method",
               desc: "Learning concepts through fun activities, music, and storytelling.",
               color: "bg-secondary",
-              shadow: "shadow-pastel-blue",
             },
             {
-              icon: <Star size={40} className="text-white" />,
+              image: teacherImg,
               title: "Experienced Staff",
               desc: "Certified and caring teachers who treat every child with love.",
               color: "bg-accent",
-              shadow: "shadow-lg", // Yellow shadow
             },
           ].map((item, index) => (
             <motion.div
@@ -67,13 +67,12 @@ export default function About() {
               whileHover={{ y: -10 }}
               className="bg-white p-8 rounded-[2rem] border border-muted shadow-soft text-center group relative overflow-hidden"
             >
-              <div className={`w-20 h-20 mx-auto ${item.color} rounded-full flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform duration-300`}>
-                {item.icon}
+              <div className="w-24 h-24 mx-auto mb-6 rounded-2xl overflow-hidden shadow-md group-hover:scale-110 transition-transform duration-300">
+                <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
               </div>
               <h3 className="text-xl font-heading font-bold mb-3 text-foreground">{item.title}</h3>
               <p className="text-muted-foreground">{item.desc}</p>
               
-              {/* Decorative corner doodle */}
               <div className={`absolute -top-10 -right-10 w-32 h-32 ${item.color} opacity-10 rounded-full`} />
             </motion.div>
           ))}
