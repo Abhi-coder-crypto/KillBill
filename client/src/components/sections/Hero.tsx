@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import heroBg from "@assets/generated_images/minimal_pastel_kids_learning.png";
 
 export default function Hero() {
@@ -37,11 +35,6 @@ export default function Hero() {
           <p className="text-lg text-muted-foreground mb-8 max-w-lg mx-auto md:mx-0 font-medium leading-relaxed">
             Welcome to Kilbil PreSchool, a safe and magical place where your little ones grow, explore, and create memories that last a lifetime.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <Button size="lg" className="rounded-full bg-primary hover:bg-primary/90 text-white font-heading text-lg px-8 py-6 shadow-pastel-pink hover:scale-105 transition-all">
-              Explore Programs <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-          </div>
         </motion.div>
 
         <motion.div

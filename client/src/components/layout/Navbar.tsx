@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import kilbilLogo from "@assets/generated_images/kilbil_preschool_logo.png";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,9 +36,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-heading font-bold text-xl shadow-lg">
-            K
-          </div>
+          <img src={kilbilLogo} alt="Kilbil PreSchool Logo" className="w-12 h-12 rounded-full object-cover shadow-lg" />
           <span className="text-2xl font-heading font-bold text-primary tracking-wide">
             Kilbil<span className="text-secondary">PreSchool</span>
           </span>
