@@ -29,8 +29,11 @@ export default function Hero() {
           <span className="inline-block px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary font-bold text-sm mb-6 border border-secondary/20 shadow-sm transform -rotate-2">
             ✨ Admissions Open for 2025-26
           </span>
-          <h1 className="text-5xl md:text-7xl font-heading font-extrabold text-foreground mb-6 leading-tight">
-            Where Learning Begins with <span className="text-primary inline-block animate-bounce">Joy!</span>
+          <h1 className="text-5xl md:text-7xl font-heading font-extrabold mb-6 leading-tight">
+            <span className="text-[#5D4E6D]">Where </span>
+            <span className="text-[#E57373]">L</span><span className="text-[#FFB74D]">e</span><span className="text-[#81C784]">a</span><span className="text-[#64B5F6]">r</span><span className="text-[#BA68C8]">n</span><span className="text-[#4DB6AC]">i</span><span className="text-[#FF8A65]">n</span><span className="text-[#7986CB]">g</span>
+            <span className="text-[#5D4E6D]"> Begins with </span>
+            <span className="text-[#FF6B6B] inline-block animate-bounce">Joy!</span>
           </h1>
           <p className="text-lg text-muted-foreground mb-8 max-w-lg mx-auto md:mx-0 font-medium leading-relaxed">
             Welcome to Kilbil PreSchool, a safe and magical place where your little ones grow, explore, and create memories that last a lifetime.

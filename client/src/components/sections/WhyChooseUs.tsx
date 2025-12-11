@@ -23,9 +23,12 @@ export default function WhyChooseUs() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-             <h2 className="text-4xl font-heading font-bold text-foreground mb-6">
-               Why Parents Trust <br/>
-               <span className="text-secondary">Kilbil PreSchool</span>
+             <h2 className="text-4xl font-heading font-bold mb-6">
+               <span className="text-[#5D4E6D]">Why </span>
+               <span className="text-[#E57373]">P</span><span className="text-[#FFB74D]">a</span><span className="text-[#81C784]">r</span><span className="text-[#64B5F6]">e</span><span className="text-[#BA68C8]">n</span><span className="text-[#4DB6AC]">t</span><span className="text-[#FF8A65]">s</span>
+               <span className="text-[#5D4E6D]"> Trust</span> <br/>
+               <span className="text-[#E57373]">K</span><span className="text-[#FFB74D]">i</span><span className="text-[#81C784]">l</span><span className="text-[#64B5F6]">b</span><span className="text-[#BA68C8]">i</span><span className="text-[#4DB6AC]">l</span>
+               <span className="text-[#5D4E6D]"> PreSchool</span>
              </h2>
              <p className="text-muted-foreground text-lg mb-8">
                We go beyond traditional teaching to ensure your child gets the best start in life. Our environment is designed to be an extension of your home.

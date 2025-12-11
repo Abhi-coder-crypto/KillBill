@@ -55,7 +55,12 @@ export default function Programs() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-           <h2 className="text-4xl font-heading font-bold text-foreground mb-4">Our Learning Programs</h2>
+           <h2 className="text-4xl font-heading font-bold mb-4">
+             <span className="text-[#5D4E6D]">Our </span>
+             <span className="text-[#E57373]">L</span><span className="text-[#FFB74D]">e</span><span className="text-[#81C784]">a</span><span className="text-[#64B5F6]">r</span><span className="text-[#BA68C8]">n</span><span className="text-[#4DB6AC]">i</span><span className="text-[#FF8A65]">n</span><span className="text-[#7986CB]">g</span>
+             <span className="text-[#5D4E6D]"> </span>
+             <span className="text-[#4ECDC4]">P</span><span className="text-[#FFB347]">r</span><span className="text-[#81C784]">o</span><span className="text-[#BA68C8]">g</span><span className="text-[#64B5F6]">r</span><span className="text-[#FF8A65]">a</span><span className="text-[#7986CB]">m</span><span className="text-[#E57373]">s</span>
+           </h2>
            <p className="text-muted-foreground text-lg">Designed for every stage of early childhood.</p>
         </div>
 

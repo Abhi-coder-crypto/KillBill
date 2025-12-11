@@ -13,8 +13,13 @@ export default function Contact() {
             <div className="inline-block px-4 py-1 rounded-full bg-secondary/20 text-secondary-foreground font-bold text-sm">
               Get in Touch
             </div>
-            <h2 className="text-4xl font-heading font-bold text-foreground">
-              Have Questions? <br /> We'd Love to Hear From You!
+            <h2 className="text-4xl font-heading font-bold">
+              <span className="text-[#5D4E6D]">Have </span>
+              <span className="text-[#E57373]">Q</span><span className="text-[#FFB74D]">u</span><span className="text-[#81C784]">e</span><span className="text-[#64B5F6]">s</span><span className="text-[#BA68C8]">t</span><span className="text-[#4DB6AC]">i</span><span className="text-[#FF8A65]">o</span><span className="text-[#7986CB]">n</span><span className="text-[#E57373]">s</span><span className="text-[#5D4E6D]">?</span>
+              <br />
+              <span className="text-[#5D4E6D]">We'd </span>
+              <span className="text-[#4ECDC4]">L</span><span className="text-[#FFB347]">o</span><span className="text-[#81C784]">v</span><span className="text-[#BA68C8]">e</span>
+              <span className="text-[#5D4E6D]"> to Hear From You!</span>
             </h2>
             <p className="text-muted-foreground text-lg">
               Visit our campus or drop us a message. We are happy to answer any queries about admissions, programs, or franchise opportunities.

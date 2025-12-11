@@ -30,7 +30,11 @@ export default function Gallery() {
           >
             Learning in Action
           </motion.div>
-          <h2 className="text-4xl font-heading font-bold text-[#5D4E6D] mb-4">Capturing the Magic</h2>
+          <h2 className="text-4xl font-heading font-bold mb-4">
+            <span className="text-[#4ECDC4]">C</span><span className="text-[#FFB347]">a</span><span className="text-[#81C784]">p</span><span className="text-[#BA68C8]">t</span><span className="text-[#64B5F6]">u</span><span className="text-[#FF8A65]">r</span><span className="text-[#7986CB]">i</span><span className="text-[#E57373]">n</span><span className="text-[#4DB6AC]">g</span>
+            <span className="text-[#5D4E6D]"> the </span>
+            <span className="text-[#E57373]">M</span><span className="text-[#FFB74D]">a</span><span className="text-[#81C784]">g</span><span className="text-[#64B5F6]">i</span><span className="text-[#BA68C8]">c</span>
+          </h2>
           <p className="text-[#6B5B7A] text-lg">
             See how our teaching methods come to life through play, exploration, and hands-on activities.
           </p>

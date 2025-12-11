@@ -14,8 +14,11 @@ export default function Franchise() {
           {/* Confetti Background */}
           <div className="absolute inset-0 bg-[radial-gradient(#ffd700_1px,transparent_1px)] [background-size:20px_20px] opacity-20"></div>
 
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6 relative z-10">
-            Join the Kilbil Franchise
+          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 relative z-10">
+            <span className="text-[#5D4E6D]">Join the </span>
+            <span className="text-[#E57373]">K</span><span className="text-[#FFB74D]">i</span><span className="text-[#81C784]">l</span><span className="text-[#64B5F6]">b</span><span className="text-[#BA68C8]">i</span><span className="text-[#4DB6AC]">l</span>
+            <span className="text-[#5D4E6D]"> </span>
+            <span className="text-[#4ECDC4]">F</span><span className="text-[#FFB347]">r</span><span className="text-[#81C784]">a</span><span className="text-[#BA68C8]">n</span><span className="text-[#64B5F6]">c</span><span className="text-[#FF8A65]">h</span><span className="text-[#7986CB]">i</span><span className="text-[#E57373]">s</span><span className="text-[#4DB6AC]">e</span>
           </h2>
           <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto relative z-10">
             Start your own successful preschool with our proven model, curriculum support, and brand recognition. Calculate your potential ROI now!

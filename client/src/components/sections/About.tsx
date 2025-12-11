@@ -22,9 +22,12 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl font-heading font-bold text-foreground mb-4"
+            className="text-4xl font-heading font-bold mb-4"
           >
-            Nurturing Curiosity & Creativity
+            <span className="text-[#5D4E6D]">Nurturing </span>
+            <span className="text-[#FF8A65]">C</span><span className="text-[#FFB74D]">u</span><span className="text-[#81C784]">r</span><span className="text-[#64B5F6]">i</span><span className="text-[#BA68C8]">o</span><span className="text-[#4DB6AC]">s</span><span className="text-[#E57373]">i</span><span className="text-[#7986CB]">t</span><span className="text-[#FF6B6B]">y</span>
+            <span className="text-[#5D4E6D]"> & </span>
+            <span className="text-[#4ECDC4]">C</span><span className="text-[#FFB347]">r</span><span className="text-[#81C784]">e</span><span className="text-[#BA68C8]">a</span><span className="text-[#64B5F6]">t</span><span className="text-[#FF8A65]">i</span><span className="text-[#7986CB]">v</span><span className="text-[#4DB6AC]">i</span><span className="text-[#E57373]">t</span><span className="text-[#FFB74D]">y</span>
           </motion.h2>
           <motion.p
              initial={{ opacity: 0, y: 20 }}
