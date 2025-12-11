@@ -1,0 +1,80 @@
+Create a fully responsive, professional, and visually playful preschool website prototype for **Kilbil PreSchool – Badlapur**.  
+Use a **pastel color palette** inspired by children-friendly themes (pastel yellow, pastel blue, pastel pink, soft purple, light green).  
+The design must feel **joyful, lively, safe, and premium-quality**, suitable for Playgroup, Nursery, Jr. KG, and Sr. KG.
+
+🎨 **Design Requirements**
+- Use smooth pastel gradients and soft drop shadows.
+- Rounded cards, soft borders, playful shapes, floating icons, and cute doodle elements.
+- Use child-friendly typography (rounded, friendly font).
+- Add small micro-animations on hover (button bounce, card tilt, icon wiggle).
+- Add cute animated elements like floating balloons/clouds, swinging doodles, etc.
+- Make the UI feel premium but fun.
+
+🎯 **Website Sections**
+1. **Hero Section**  
+   - Big attractive banner with kids illustrations / playful shapes  
+   - Headline: "Welcome to Kilbil PreSchool – Where Learning Begins with Joy!"  
+   - CTA buttons: "Explore Programs" and "Franchise Calculator"
+
+2. **About Us Section**  
+   - Playful card-style layout with pastel icons.  
+   - Animated separators (stars, confetti, doodles).
+
+3. **Programs Section**  
+   - 4 cards: Playgroup, Nursery, Jr KG, Sr KG  
+   - Each card with pastel backgrounds, smooth scaling animation on hover.
+
+4. **Why Choose Us**  
+   - Cute icons with simple animations (shake, bounce, pop).
+
+5. **Gallery Section**  
+   - Masonry grid or interactive carousel  
+   - Light pastel frames around images.
+
+6. **Franchise Model Section**  
+   - Highlight: “Join Kilbil PreSchool Franchise – Grow with Us!”  
+   - Include attractive CTA to open PNL Calculator.
+
+7. **PNL Franchise Calculator (Prototype Page)**  
+   Create a beautiful, dynamic PNL calculator with dummy values.  
+   Use animated cards, pastel styling, and pop-up results.
+
+   **Input fields (dummy logic for now):**
+   - Initial Investment  
+   - Monthly Fees  
+   - Expected Student Count  
+   - Average Fees per Student  
+   - Teacher Salaries  
+   - Rent & Utilities  
+   - Marketing Cost
+
+   **Output in popup modal (dummy formula):**
+   - Total Revenue  
+   - Total Expenses  
+   - Monthly Profit/Loss  
+   - Break-even Projection  
+   Add playful animation to the popup (scale-in + confetti).
+
+8. **Contact Section**  
+   - Cute icons (phone, map, mail) with soft animations.
+
+9. **Footer**  
+   - Pastel gradient background  
+   - Simple, cute illustrations or floating elements.
+
+🌈 **Animations & Effects**
+- Soft entrance animations for all sections (fade in, slide up).  
+- Floating balloon animations in hero section.  
+- Hover bounce effects on all CTA buttons.  
+- Animated pop-up for calculator results.  
+- Smooth transitions throughout.
+
+📱 **Responsiveness**
+- Fully responsive for mobile, tablet, and desktop.
+- Keep animations light for mobile.
+
+✨ **Overall Theme**
+Playful, pastel, bright, child-friendly, clean, modern, and premium.
+
+Generate clean HTML, CSS, and JavaScript with separate files.  
+The final prototype should look visually stunning, modern, and ready to show the preschool client.
