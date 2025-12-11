@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Play } from "lucide-react";
+import vidRunning from "@assets/generated_videos/slow_motion_of_kids_running_in_grass.mp4";
 
 export default function WhyChooseUs() {
   const features = [
@@ -54,17 +55,27 @@ export default function WhyChooseUs() {
             className="relative"
           >
             <div className="absolute inset-0 bg-accent rounded-[3rem] rotate-3 opacity-20 transform translate-x-4 translate-y-4"></div>
-            <div className="bg-white p-8 rounded-[3rem] shadow-xl border-4 border-white relative overflow-hidden">
-               <div className="aspect-video bg-secondary/20 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                 <div className="absolute inset-0 bg-gradient-to-br from-secondary to-primary opacity-80 mix-blend-overlay"></div>
-                 {/* Placeholder for video or happy image */}
-                 <div className="text-center z-10">
-                   <span className="block text-6xl mb-2">🥰</span>
-                   <span className="font-heading font-bold text-xl text-primary-foreground">Happy Parents, Happy Kids!</span>
+            <div className="bg-white p-4 rounded-[3rem] shadow-xl border-4 border-white relative overflow-hidden">
+               <div className="aspect-video bg-black rounded-2xl flex items-center justify-center relative overflow-hidden group shadow-inner">
+                 <video 
+                   src={vidRunning} 
+                   className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-500" 
+                   autoPlay 
+                   muted 
+                   loop 
+                   playsInline
+                 />
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
+                 <div className="absolute bottom-6 left-6 z-10 text-white">
+                   <div className="flex items-center gap-2 mb-1">
+                     <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                     <span className="text-xs font-bold uppercase tracking-widest opacity-80">Live Moments</span>
+                   </div>
+                   <span className="font-heading font-bold text-2xl">Pure Joy & Freedom</span>
                  </div>
                </div>
                
-               <div className="mt-8 flex justify-between items-center px-4">
+               <div className="mt-6 flex justify-between items-center px-4 pb-4">
                  <div className="text-center">
                    <div className="text-3xl font-heading font-bold text-primary">500+</div>
                    <div className="text-xs text-muted-foreground uppercase tracking-wider">Students</div>
