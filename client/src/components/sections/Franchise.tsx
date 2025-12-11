@@ -24,9 +24,9 @@ export default function Franchise() {
           <Button 
             size="lg" 
             className="bg-primary hover:bg-primary/90 text-white font-heading text-xl px-10 py-8 rounded-full shadow-pastel-pink animate-pulse hover:animate-none hover:scale-105 transition-all relative z-10"
-            onClick={() => document.getElementById('calculator-section')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            Open Profit Calculator
+            Interested? Contact Us
           </Button>
 
           <p className="mt-6 text-sm text-muted-foreground font-medium relative z-10">

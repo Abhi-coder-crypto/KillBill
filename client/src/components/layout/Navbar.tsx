@@ -37,8 +37,8 @@ export default function Navbar() {
       <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <img src={kilbilLogo} alt="Kilbil PreSchool Logo" className="w-12 h-12 rounded-full object-cover shadow-lg" />
-          <span className="text-2xl font-heading font-bold text-primary tracking-wide">
-            Kilbil<span className="text-secondary">PreSchool</span>
+          <span className="text-2xl font-heading font-bold tracking-wide">
+            <span className="text-[#E57373]">K</span><span className="text-[#FFB74D]">i</span><span className="text-[#81C784]">l</span><span className="text-[#64B5F6]">b</span><span className="text-[#BA68C8]">i</span><span className="text-[#4DB6AC]">l</span><span className="text-[#5D4E6D]">PreSchool</span>
           </span>
         </div>
 
