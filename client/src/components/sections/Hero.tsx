@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calculator } from "lucide-react";
-import heroBg from "@assets/generated_images/animated_kids_learning_together.png";
+import heroBg from "@assets/generated_images/minimal_pastel_kids_learning.png";
 
 export default function Hero() {
   return (
