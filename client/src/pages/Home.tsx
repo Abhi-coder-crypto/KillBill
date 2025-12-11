@@ -6,7 +6,6 @@ import Programs from "@/components/sections/Programs";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import Gallery from "@/components/sections/Gallery";
 import Franchise from "@/components/sections/Franchise";
-import FranchiseCalculator from "@/components/FranchiseCalculator";
 import Contact from "@/components/sections/Contact";
 
 export default function Home() {
@@ -20,7 +19,6 @@ export default function Home() {
         <WhyChooseUs />
         <Gallery />
         <Franchise />
-        <FranchiseCalculator />
         <Contact />
       </main>
       <Footer />

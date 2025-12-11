@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Calculator } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import heroBg from "@assets/generated_images/minimal_pastel_kids_learning.png";
 
 export default function Hero() {
@@ -40,15 +40,6 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <Button size="lg" className="rounded-full bg-primary hover:bg-primary/90 text-white font-heading text-lg px-8 py-6 shadow-pastel-pink hover:scale-105 transition-all">
               Explore Programs <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="rounded-full border-2 border-secondary text-secondary hover:bg-secondary/10 font-heading text-lg px-8 py-6 hover:scale-105 transition-all bg-white/50 backdrop-blur-sm"
-              onClick={() => document.getElementById('franchise')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              <Calculator className="mr-2 w-5 h-5" />
-              Franchise Calculator
             </Button>
           </div>
         </motion.div>
