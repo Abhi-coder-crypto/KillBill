@@ -52,7 +52,7 @@ export default function Hero() {
             </span>
           </h1>
           <p className="text-lg text-muted-foreground mb-8 max-w-lg mx-auto md:mx-0 font-medium leading-relaxed">
-            Welcome to Kilbil PreSchool —  
+            Welcome to Kilbil PreSchool—  
             safe,Happy space 
             The little ones grow,  
             explore with curiosity,  
