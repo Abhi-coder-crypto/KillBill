@@ -63,28 +63,27 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Kid with Slate popping from bottom */}
+      {/* Kid with Slate popping from bottom - text on the white slate */}
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, delay: 0.5, type: "spring", bounce: 0.4 }}
-        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center"
+        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 z-20"
       >
-        {/* Slate Badge */}
-        <div className="bg-gradient-to-br from-[#2D2D2D] to-[#1a1a1a] px-8 py-4 rounded-xl shadow-2xl border-4 border-[#8B4513] relative mb-[-20px] z-10">
-          <div className="absolute inset-2 border-2 border-[#5D4037] rounded-lg opacity-30"></div>
-          <div className="text-center relative z-10">
-            <span className="block text-4xl font-bold font-heading text-white drop-shadow-lg">15+</span>
-            <span className="text-sm font-bold text-gray-300">Years Experience</span>
+        <div className="relative">
+          {/* Kid Image */}
+          <img 
+            src={kidWithSlate} 
+            alt="Happy kid holding slate" 
+            className="w-48 h-48 object-contain drop-shadow-xl"
+          />
+          {/* Text on the white slate the child is holding */}
+          <div className="absolute top-[15%] left-1/2 transform -translate-x-1/2 text-center w-[55%]">
+            <span className="block text-2xl font-bold font-heading text-[#2D2D2D] drop-shadow-sm">15+</span>
+            <span className="text-[10px] font-bold text-[#5D4E6D] leading-tight block">Years</span>
+            <span className="text-[10px] font-bold text-[#5D4E6D] leading-tight block">Experience</span>
           </div>
         </div>
-        
-        {/* Kid Image */}
-        <img 
-          src={kidWithSlate} 
-          alt="Happy kid" 
-          className="w-40 h-40 object-contain drop-shadow-xl"
-        />
       </motion.div>
 
       {/* Wave Separator */}

@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import confetti from "canvas-confetti";
-import { Calculator, DollarSign, Users, Building, TrendingUp } from "lucide-react";
+import { Calculator, IndianRupee, Users, Building, TrendingUp, PieChart, BarChart3 } from "lucide-react";
+import { PieChart as RechartsPie, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from "recharts";
 
 type FormData = {
   investment: number;
@@ -18,9 +18,24 @@ type FormData = {
   marketing: number;
 };
 
+type CalculationResult = {
+  revenue: number;
+  expenses: number;
+  profit: number;
+  teacherCost: number;
+  utilities: number;
+  rent: number;
+  marketing: number;
+  yearlyRevenue: number;
+  yearlyProfit: number;
+  roiMonths: number;
+};
+
+const COLORS = ['#FF6B6B', '#4ECDC4', '#FFB347', '#81C784', '#BA68C8'];
+
 export default function FranchiseCalculator() {
-  const [showResult, setShowResult] = useState(false);
-  const [result, setResult] = useState<{revenue: number; expenses: number; profit: number} | null>(null);
+  const [result, setResult] = useState<CalculationResult | null>(null);
+  const [showResults, setShowResults] = useState(false);
 
   const form = useForm<FormData>({
     defaultValues: {
@@ -33,161 +48,357 @@ export default function FranchiseCalculator() {
   });
 
   const onSubmit = (data: FormData) => {
-    // Dummy Logic
     const monthlyRevenue = data.studentCount * data.monthlyFees;
-    // Assume teacher salary is fixed per 15 students + utilities
     const teacherCount = Math.ceil(data.studentCount / 15);
     const teacherCost = teacherCount * 15000;
     const utilities = 5000;
     const monthlyExpenses = Number(data.rent) + Number(data.marketing) + teacherCost + utilities;
     const monthlyProfit = monthlyRevenue - monthlyExpenses;
+    const yearlyRevenue = monthlyRevenue * 12;
+    const yearlyProfit = monthlyProfit * 12;
+    const roiMonths = monthlyProfit > 0 ? Math.ceil(data.investment / monthlyProfit) : 0;
 
     setResult({
       revenue: monthlyRevenue,
       expenses: monthlyExpenses,
-      profit: monthlyProfit
+      profit: monthlyProfit,
+      teacherCost,
+      utilities,
+      rent: Number(data.rent),
+      marketing: Number(data.marketing),
+      yearlyRevenue,
+      yearlyProfit,
+      roiMonths
     });
-    setShowResult(true);
+    setShowResults(true);
     
-    // Trigger confetti
-    confetti({
-      particleCount: 150,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ['#FFB7B2', '#B5EAD7', '#C7CEEA', '#FFFFD8'] // Pastel colors
-    });
+    if (monthlyProfit > 0) {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#FFB7B2', '#B5EAD7', '#C7CEEA', '#FFFFD8']
+      });
+    }
   };
 
+  const expenseBreakdownData = result ? [
+    { name: 'Rent', value: result.rent, color: '#FF6B6B' },
+    { name: 'Marketing', value: result.marketing, color: '#4ECDC4' },
+    { name: 'Teachers', value: result.teacherCost, color: '#FFB347' },
+    { name: 'Utilities', value: result.utilities, color: '#81C784' },
+  ] : [];
+
+  const profitComparisonData = result ? [
+    { name: 'Monthly', revenue: result.revenue, expenses: result.expenses, profit: result.profit },
+    { name: 'Quarterly', revenue: result.revenue * 3, expenses: result.expenses * 3, profit: result.profit * 3 },
+    { name: 'Yearly', revenue: result.yearlyRevenue, expenses: result.expenses * 12, profit: result.yearlyProfit },
+  ] : [];
+
   return (
-    <section id="calculator-section" className="py-20 bg-white">
+    <section id="calculator-section" className="py-20 bg-gradient-to-b from-white to-accent/10">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-heading font-bold text-foreground flex items-center justify-center gap-3">
-              <Calculator className="text-primary" /> Franchise Profit Calculator
+        <div className="max-w-6xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
+              <span className="text-[#5D4E6D]">P&L </span>
+              <span className="text-[#E57373]">C</span><span className="text-[#FFB74D]">a</span><span className="text-[#81C784]">l</span><span className="text-[#64B5F6]">c</span><span className="text-[#BA68C8]">u</span><span className="text-[#4DB6AC]">l</span><span className="text-[#FF8A65]">a</span><span className="text-[#7986CB]">t</span><span className="text-[#E57373]">o</span><span className="text-[#FFB74D]">r</span>
             </h2>
-            <p className="text-muted-foreground mt-2">Estimate your potential earnings with Kilbil.</p>
-          </div>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Plan your franchise investment with our interactive profit and loss calculator. Get instant insights into your potential earnings.
+            </p>
+          </motion.div>
 
-          <div className="bg-background rounded-[2rem] p-8 md:p-12 shadow-soft border border-border">
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Investment */}
-                <div className="space-y-4">
-                  <Label className="text-lg font-heading text-foreground">Initial Investment (₹)</Label>
-                  <div className="relative">
-                    <DollarSign className="absolute left-3 top-3 text-muted-foreground" size={18} />
-                    <Input 
-                      type="number" 
-                      {...form.register("investment")} 
-                      className="pl-10 h-12 text-lg rounded-xl border-2 border-muted focus:border-primary focus:ring-0 transition-all bg-white"
-                    />
-                  </div>
-                </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Calculator Form */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <Card className="border-2 shadow-xl">
+                <CardHeader className="bg-gradient-to-r from-[#FF6B6B] via-[#FFB347] to-[#4ECDC4] text-white rounded-t-lg">
+                  <CardTitle className="flex items-center gap-2 text-xl">
+                    <Calculator className="w-6 h-6" />
+                    Enter Your Details
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <div className="space-y-4">
+                      <Label className="text-base font-heading text-foreground">Initial Investment</Label>
+                      <div className="relative">
+                        <IndianRupee className="absolute left-3 top-3 text-muted-foreground" size={18} />
+                        <Input 
+                          type="number" 
+                          {...form.register("investment")} 
+                          className="pl-10 h-12 text-lg rounded-xl border-2"
+                          data-testid="input-investment"
+                        />
+                      </div>
+                    </div>
 
-                {/* Monthly Fees */}
-                <div className="space-y-4">
-                  <Label className="text-lg font-heading text-foreground">Monthly Fee per Student (₹)</Label>
-                  <div className="relative">
-                    <DollarSign className="absolute left-3 top-3 text-muted-foreground" size={18} />
-                    <Input 
-                      type="number" 
-                      {...form.register("monthlyFees")} 
-                      className="pl-10 h-12 text-lg rounded-xl border-2 border-muted focus:border-secondary focus:ring-0 transition-all bg-white"
-                    />
-                  </div>
-                </div>
+                    <div className="space-y-4">
+                      <Label className="text-base font-heading text-foreground">Monthly Fee per Student</Label>
+                      <div className="relative">
+                        <IndianRupee className="absolute left-3 top-3 text-muted-foreground" size={18} />
+                        <Input 
+                          type="number" 
+                          {...form.register("monthlyFees")} 
+                          className="pl-10 h-12 text-lg rounded-xl border-2"
+                          data-testid="input-monthly-fees"
+                        />
+                      </div>
+                    </div>
 
-                {/* Student Count Slider */}
-                <div className="space-y-4 md:col-span-2">
-                  <div className="flex justify-between">
-                    <Label className="text-lg font-heading text-foreground">Expected Students</Label>
-                    <span className="font-bold text-primary text-xl">{form.watch("studentCount")}</span>
-                  </div>
-                  <Slider 
-                    defaultValue={[50]} 
-                    max={200} 
-                    step={5} 
-                    onValueChange={(val) => form.setValue("studentCount", val[0])}
-                    className="py-4"
-                  />
-                  <p className="text-xs text-muted-foreground">Slide to adjust student count</p>
-                </div>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center">
+                        <Label className="text-base font-heading text-foreground flex items-center gap-2">
+                          <Users size={18} /> Expected Students
+                        </Label>
+                        <span className="font-bold text-[#4ECDC4] text-xl bg-[#4ECDC4]/10 px-3 py-1 rounded-full">{form.watch("studentCount")}</span>
+                      </div>
+                      <Slider 
+                        defaultValue={[50]} 
+                        max={200} 
+                        min={10}
+                        step={5} 
+                        onValueChange={(val) => form.setValue("studentCount", val[0])}
+                        className="py-4"
+                        data-testid="slider-student-count"
+                      />
+                    </div>
 
-                {/* Rent */}
-                <div className="space-y-4">
-                  <Label className="text-lg font-heading text-foreground">Monthly Rent (₹)</Label>
-                  <div className="relative">
-                    <Building className="absolute left-3 top-3 text-muted-foreground" size={18} />
-                    <Input 
-                      type="number" 
-                      {...form.register("rent")} 
-                      className="pl-10 h-12 text-lg rounded-xl border-2 border-muted focus:border-accent focus:ring-0 transition-all bg-white"
-                    />
-                  </div>
-                </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label className="text-sm font-heading flex items-center gap-1">
+                          <Building size={14} /> Monthly Rent
+                        </Label>
+                        <div className="relative">
+                          <IndianRupee className="absolute left-2 top-2.5 text-muted-foreground" size={14} />
+                          <Input 
+                            type="number" 
+                            {...form.register("rent")} 
+                            className="pl-7 h-10 rounded-lg border-2"
+                            data-testid="input-rent"
+                          />
+                        </div>
+                      </div>
 
-                {/* Marketing */}
-                <div className="space-y-4">
-                  <Label className="text-lg font-heading text-foreground">Marketing Budget (₹)</Label>
-                  <div className="relative">
-                    <TrendingUp className="absolute left-3 top-3 text-muted-foreground" size={18} />
-                    <Input 
-                      type="number" 
-                      {...form.register("marketing")} 
-                      className="pl-10 h-12 text-lg rounded-xl border-2 border-muted focus:border-green-300 focus:ring-0 transition-all bg-white"
-                    />
-                  </div>
-                </div>
-              </div>
+                      <div className="space-y-2">
+                        <Label className="text-sm font-heading flex items-center gap-1">
+                          <TrendingUp size={14} /> Marketing
+                        </Label>
+                        <div className="relative">
+                          <IndianRupee className="absolute left-2 top-2.5 text-muted-foreground" size={14} />
+                          <Input 
+                            type="number" 
+                            {...form.register("marketing")} 
+                            className="pl-7 h-10 rounded-lg border-2"
+                            data-testid="input-marketing"
+                          />
+                        </div>
+                      </div>
+                    </div>
 
-              <Button 
-                type="submit" 
-                className="w-full h-14 text-xl font-heading rounded-2xl bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity shadow-lg text-white mt-8"
-              >
-                Calculate My ROI 🚀
-              </Button>
-            </form>
+                    <Button 
+                      type="submit" 
+                      className="w-full h-14 text-lg font-heading rounded-xl bg-gradient-to-r from-[#FF6B6B] via-[#FFB347] to-[#4ECDC4] hover:opacity-90 transition-opacity shadow-lg text-white"
+                      data-testid="button-calculate-roi"
+                    >
+                      Calculate My ROI
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Results Section */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="space-y-6"
+            >
+              <AnimatePresence>
+                {showResults && result ? (
+                  <>
+                    {/* Summary Cards */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="grid grid-cols-3 gap-4"
+                    >
+                      <Card className="bg-green-50 border-green-200">
+                        <CardContent className="p-4 text-center">
+                          <p className="text-xs text-green-600 font-medium mb-1">Monthly Revenue</p>
+                          <p className="text-lg font-bold text-green-700" data-testid="text-monthly-revenue">
+                            {result.revenue.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 })}
+                          </p>
+                        </CardContent>
+                      </Card>
+                      <Card className="bg-red-50 border-red-200">
+                        <CardContent className="p-4 text-center">
+                          <p className="text-xs text-red-600 font-medium mb-1">Monthly Expenses</p>
+                          <p className="text-lg font-bold text-red-700" data-testid="text-monthly-expenses">
+                            {result.expenses.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 })}
+                          </p>
+                        </CardContent>
+                      </Card>
+                      <Card className={`${result.profit >= 0 ? 'bg-[#4ECDC4]/10 border-[#4ECDC4]' : 'bg-orange-50 border-orange-200'}`}>
+                        <CardContent className="p-4 text-center">
+                          <p className={`text-xs font-medium mb-1 ${result.profit >= 0 ? 'text-[#4ECDC4]' : 'text-orange-600'}`}>Monthly Profit</p>
+                          <p className={`text-lg font-bold ${result.profit >= 0 ? 'text-[#3BA99C]' : 'text-orange-700'}`} data-testid="text-monthly-profit">
+                            {result.profit.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 })}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+
+                    {/* ROI Timeline */}
+                    {result.profit > 0 && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                      >
+                        <Card className="bg-gradient-to-r from-[#FF6B6B]/10 via-[#FFB347]/10 to-[#4ECDC4]/10 border-2 border-dashed border-[#FFB347]">
+                          <CardContent className="p-6 text-center">
+                            <p className="text-sm text-muted-foreground mb-2">Estimated ROI Recovery</p>
+                            <p className="text-4xl font-heading font-bold text-[#FF6B6B]" data-testid="text-roi-months">
+                              {result.roiMonths} Months
+                            </p>
+                            <p className="text-xs text-muted-foreground mt-2">to recover your initial investment</p>
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+                    )}
+
+                    {/* Charts */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {/* Expense Breakdown Pie Chart */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.3 }}
+                      >
+                        <Card>
+                          <CardHeader className="pb-2">
+                            <CardTitle className="text-sm flex items-center gap-2">
+                              <PieChart size={16} className="text-[#FF6B6B]" />
+                              Expense Breakdown
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <ResponsiveContainer width="100%" height={180}>
+                              <RechartsPie>
+                                <Pie
+                                  data={expenseBreakdownData}
+                                  cx="50%"
+                                  cy="50%"
+                                  innerRadius={40}
+                                  outerRadius={70}
+                                  paddingAngle={3}
+                                  dataKey="value"
+                                >
+                                  {expenseBreakdownData.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={entry.color} />
+                                  ))}
+                                </Pie>
+                                <Tooltip 
+                                  formatter={(value: number) => value.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 })}
+                                />
+                                <Legend 
+                                  wrapperStyle={{ fontSize: '10px' }}
+                                  layout="horizontal"
+                                  verticalAlign="bottom"
+                                />
+                              </RechartsPie>
+                            </ResponsiveContainer>
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+
+                      {/* Revenue vs Profit Bar Chart */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.4 }}
+                      >
+                        <Card>
+                          <CardHeader className="pb-2">
+                            <CardTitle className="text-sm flex items-center gap-2">
+                              <BarChart3 size={16} className="text-[#4ECDC4]" />
+                              Projected Growth
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <ResponsiveContainer width="100%" height={180}>
+                              <BarChart data={profitComparisonData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                                <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
+                                <XAxis dataKey="name" tick={{ fontSize: 10 }} />
+                                <YAxis tick={{ fontSize: 10 }} tickFormatter={(value) => `${(value/1000)}k`} />
+                                <Tooltip 
+                                  formatter={(value: number) => value.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 })}
+                                />
+                                <Bar dataKey="revenue" fill="#81C784" name="Revenue" radius={[4, 4, 0, 0]} />
+                                <Bar dataKey="profit" fill="#4ECDC4" name="Profit" radius={[4, 4, 0, 0]} />
+                              </BarChart>
+                            </ResponsiveContainer>
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+                    </div>
+
+                    {/* Yearly Summary */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                    >
+                      <Card className="bg-[#5D4E6D] text-white">
+                        <CardContent className="p-6">
+                          <div className="grid grid-cols-2 gap-6 text-center">
+                            <div>
+                              <p className="text-white/70 text-sm mb-1">Yearly Revenue</p>
+                              <p className="text-2xl font-bold" data-testid="text-yearly-revenue">
+                                {result.yearlyRevenue.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 })}
+                              </p>
+                            </div>
+                            <div>
+                              <p className="text-white/70 text-sm mb-1">Yearly Profit</p>
+                              <p className="text-2xl font-bold text-[#4ECDC4]" data-testid="text-yearly-profit">
+                                {result.yearlyProfit.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 })}
+                              </p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  </>
+                ) : (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="flex flex-col items-center justify-center h-full min-h-[400px] bg-muted/20 rounded-2xl border-2 border-dashed border-muted"
+                  >
+                    <Calculator className="w-16 h-16 text-muted-foreground/40 mb-4" />
+                    <p className="text-muted-foreground text-lg font-medium">Enter your details</p>
+                    <p className="text-muted-foreground/60 text-sm">to see your projected earnings</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           </div>
         </div>
       </div>
-
-      <Dialog open={showResult} onOpenChange={setShowResult}>
-        <DialogContent className="sm:max-w-md bg-white rounded-[2rem] border-0 p-0 overflow-hidden">
-          <div className="bg-gradient-to-r from-primary to-secondary p-6 text-center text-white">
-            <DialogHeader>
-              <DialogTitle className="text-2xl font-heading font-bold text-center text-white">Projected Monthly ROI</DialogTitle>
-              <DialogDescription className="text-white/80 text-center">
-                Based on your inputs
-              </DialogDescription>
-            </DialogHeader>
-          </div>
-          
-          <div className="p-8 space-y-6">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-green-50 p-4 rounded-xl text-center border border-green-100">
-                <p className="text-sm text-muted-foreground mb-1">Revenue</p>
-                <p className="text-xl font-bold text-green-600">₹{result?.revenue.toLocaleString()}</p>
-              </div>
-              <div className="bg-red-50 p-4 rounded-xl text-center border border-red-100">
-                <p className="text-sm text-muted-foreground mb-1">Expenses</p>
-                <p className="text-xl font-bold text-red-500">₹{result?.expenses.toLocaleString()}</p>
-              </div>
-            </div>
-
-            <div className="bg-accent/20 p-6 rounded-2xl text-center border border-accent border-dashed">
-              <p className="text-sm text-foreground font-medium mb-2 uppercase tracking-wide">Net Monthly Profit</p>
-              <p className="text-4xl font-heading font-extrabold text-primary">
-                ₹{result?.profit.toLocaleString()}
-              </p>
-            </div>
-
-            <Button onClick={() => setShowResult(false)} className="w-full rounded-xl" variant="outline">
-              Close & Recalculate
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </section>
   );
 }
