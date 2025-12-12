@@ -53,7 +53,8 @@ export default function Hero() {
           </h1>
           <p className="text-lg text-muted-foreground mb-8 max-w-lg mx-auto md:mx-0 font-medium leading-relaxed">
             Welcome to Kilbil PreSchool —  
-            a safe, joyful space where little ones grow,  
+            a safe, joyful space 
+            where little ones grow,  
             explore with curiosity,  
             and create memories that last forever.
           </p>
